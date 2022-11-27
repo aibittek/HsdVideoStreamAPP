@@ -5,8 +5,9 @@
  */
 
 #include <zephyr/zephyr.h>
+#include <log.h>
 
 void main(void)
 {
-	printk("Hello World! %s\n", CONFIG_BOARD);
+	LOG(EDEBUG, "Hello World! %s", CONFIG_BOARD);
 }

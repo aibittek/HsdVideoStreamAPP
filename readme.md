@@ -51,14 +51,24 @@
 
 ### 4.1 新建基本工程
 
+基于hello world创建功能，工程命名为HsdVideoStreamApp
+
+```
+lisa zep create
+```
+
 
 
 ## 五、API接口文档
 
-由于本案例实现的代码遵循了Doxygen的注释规范，已经自动生成了注释文档，文档参考链接：
+由于本案例实现的代码遵循了`Doxygen`的注释规范，已经自动生成了注释文档，文档参考链接：
 
 
 
 ## 六、源码链接
 
-本案例的源代码已经上传到了github平台，有兴趣的可以下载体验：
+本案例的源代码已经上传到了`github`，有兴趣的可以下载体验：
+
+```shell
+git clone https://github.com/aibittek/HsdVideoStreamAPP.git
+```
