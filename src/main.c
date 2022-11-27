@@ -9,5 +9,6 @@
 
 void main(void)
 {
+	set_log_level(EDEBUG);
 	LOG(EDEBUG, "Hello World! %s", CONFIG_BOARD);
 }
