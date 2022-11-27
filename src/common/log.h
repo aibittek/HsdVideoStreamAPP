@@ -2,7 +2,7 @@
  * @Author: AIoTMaker kuili@iflytek.com
  * @Date: 2022-11-27 16:51:54
  * @LastEditors: AIoTMaker kuili@iflytek.com
- * @LastEditTime: 2022-11-27 17:13:24
+ * @LastEditTime: 2022-11-27 19:22:01
  * @FilePath: \HsdVideoStreamAPP\src\common\log.h
  * @Description: 
  * 
@@ -41,7 +41,7 @@ static inline void set_log_level(log_level_t level)
 #define LOG(level, format, ...) \
     { \
         if (level >= g_log_level) { \
-            printk("[%s %s:%d]""["#level"]"format"\r\n", \
+            printk("[%s %s:%d]""["#level"]"format"\n", \
 				LOG_FILE_NAME_STRIP(__FILE__),__FUNCTION__,__LINE__, ##__VA_ARGS__); \
         } \
     }

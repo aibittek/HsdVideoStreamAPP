@@ -5,10 +5,11 @@
  */
 
 #include <zephyr/zephyr.h>
-#include <log.h>
+#include <user_test.h>
 
 void main(void)
 {
-	set_log_level(EDEBUG);
-	LOG(EDEBUG, "Hello World! %s", CONFIG_BOARD);
+    log_test();
+
+    while(1){}
 }
