@@ -1,0 +1,68 @@
+{
+	"configurations": [
+		{
+			"cwd": "${workspaceRoot}",
+			"executable": "${workspaceFolder}/build/zephyr/zephyr.elf",
+			"name": "LISA DAPlink Launch",
+			"request": "launch",
+			"type": "cortex-debug",
+			"servertype": "pyocd",
+			"targetId": "csk6001",
+			"serverpath": "${userHome}\\AppData\\Roaming\\LISTENAI\\LISA\\lisa-zephyr\\venv\\Scripts\\pyocd",
+			"armToolchainPath": "",
+			"toolchainPrefix": "arm-none-eabi",
+			"interface": "swd",
+			"runToEntryPoint": "main",
+			"overrideRestartCommands": [
+				"monitor reset",
+				"monitor halt",
+				"load"
+			],
+			"overrideLaunchCommands": [
+				"set $sp=((int*)_vector_table)[0]",
+				"monitor reset",
+				"monitor halt",
+				"load"
+			]
+		},
+		{
+			"type": "cortex-debug",
+			"request": "launch",
+			"cwd": "${workspaceRoot}",
+			"name": "LISA Jlink Launch",
+			"executable": "${workspaceFolder}/build/zephyr/zephyr.elf",
+			"device": "Cortex-M33",
+			"servertype": "jlink",
+			"rtos": "Zephyr",
+			"serverpath": "${env:LISA_HOME}lisa-zephyr\\packages\\node_modules\\@binary\\jlink-venus\\binary\\JLinkGDBServerCL.exe",
+			"armToolchainPath": "",
+			"toolchainPrefix": "arm-none-eabi",
+			"interface": "swd",
+			"runToMain": true,
+			"runToEntryPoint": "main",
+			"serverArgs": [
+				"-timeout",
+				"0",
+				"-strict",
+				"-singlerun",
+				"-vd",
+				"-ir",
+				"-localhostonly",
+				"1",
+				"-endian",
+				"little"
+			],
+			"overrideRestartCommands": [
+				"monitor reset",
+				"monitor halt",
+				"load"
+			],
+			"overrideLaunchCommands": [
+				"set $sp=((int*)_vector_table)[0]",
+				"monitor reset",
+				"monitor halt",
+				"load"
+			]
+		}
+	]
+}
