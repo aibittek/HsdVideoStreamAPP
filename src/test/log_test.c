@@ -2,6 +2,16 @@
  * @Author: AIoTMaker kuili@iflytek.com
  * @Date: 2022-11-27 18:46:19
  * @LastEditors: AIoTMaker kuili@iflytek.com
+ * @LastEditTime: 2022-11-27 21:30:14
+ * @FilePath: \HsdVideoStreamAPP\src\Test\log_test.c
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by AIoTMaker kuili@iflytek.com, All Rights Reserved. 
+ */
+/*
+ * @Author: AIoTMaker kuili@iflytek.com
+ * @Date: 2022-11-27 18:46:19
+ * @LastEditors: AIoTMaker kuili@iflytek.com
  * @LastEditTime: 2022-11-27 19:24:07
  * @FilePath: \HsdVideoStreamAPP\src\Test\log_test.c
  * @Description: 
@@ -35,10 +45,12 @@ void log_test()
     module1();
     module2();
     module3();
-
+  
     /// 设置日志等级为EINFO，只有module3会输出日志
     set_log_level(EERROR);
     module1();
     module2();
     module3();
+
+    set_log_level(EDEBUG);
 }

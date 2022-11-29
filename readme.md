@@ -130,6 +130,50 @@ void log_test()
 
 #### 3.2.1 Key应用案例
 
+参考key_test.c文件，内容如下，实现了按键定时器消抖，短按、长按的功能实现。
+
+```c
+#include <log.h>
+#include <key_core.h>
+#include <user_test.h>
+
+void on_key_event(key_event_t event, void* user_data)
+{
+    switch(event) {
+        case KEY_EVENT_RELEASE:
+            LOG(EDEBUG, "key is released.");
+            break;
+        case KEY_EVENT_PRESSED:
+            LOG(EDEBUG, "key is pressed.");
+            break;
+        case KEY_EVENT_LONG_PRESSED:
+            LOG(EDEBUG, "key is long pressed.");
+            break;
+        default:
+            LOG(EDEBUG, "key event is error.");
+            break;
+    }
+}
+
+void key_test()
+{
+    // 经过消抖的按键按下、抬起、长按功能测试
+    key.init();
+    key.event_register(on_key_event, NULL);
+}
+
+```
+
+打印显示内容：
+
+```shell
+[key_test.c on_key_event:12][EDEBUG]key is pressed.
+[key_test.c on_key_event:15][EDEBUG]key is long pressed.
+[key_test.c on_key_event:9][EDEBUG]key is released.
+```
+
+
+
 #### 3.2.2 Led应用案例
 
 

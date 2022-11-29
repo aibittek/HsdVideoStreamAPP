@@ -9,7 +9,10 @@
 
 void main(void)
 {
+    // 日志测试
     log_test();
+    // 按键测试
+    key_test();
 
     while(1){}
 }
