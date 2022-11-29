@@ -8,16 +8,6 @@
  * 
  * Copyright (c) 2022 by AIoTMaker kuili@iflytek.com, All Rights Reserved. 
  */
-/*
- * @Author: AIoTMaker kuili@iflytek.com
- * @Date: 2022-11-27 18:46:19
- * @LastEditors: AIoTMaker kuili@iflytek.com
- * @LastEditTime: 2022-11-27 19:24:07
- * @FilePath: \HsdVideoStreamAPP\src\Test\log_test.c
- * @Description: 
- * 
- * Copyright (c) 2022 by AIoTMaker kuili@iflytek.com, All Rights Reserved. 
- */
 #include <log.h>
 #include <user_test.h>
 

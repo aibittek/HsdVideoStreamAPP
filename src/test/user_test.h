@@ -14,5 +14,6 @@
 
 void log_test(void);                ///< 日志测试案例
 void key_test(void);                ///< 按键测试案例
+void led_test(void);                ///< LED灯测试案例
 
 #endif

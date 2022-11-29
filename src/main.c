@@ -13,6 +13,8 @@ void main(void)
     log_test();
     // 按键测试
     key_test();
+    // LED测试
+    led_test();
 
     while(1){}
 }
