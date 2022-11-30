@@ -2,5 +2,5 @@
 
 void shell_test()
 {
-    shell_command_init();
+    // shell_command_init();
 }

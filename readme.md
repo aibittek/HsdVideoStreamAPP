@@ -184,6 +184,45 @@ void key_test()
 
 
 
+#### Flash应用案例
+
+烧录
+
+```shell
+lisa zep exec cskburn -s \\.\COMx -C 6 0x700000 littlefs_imge.bin -b 748800
+```
+
+显示内容
+
+```shell
+Partition 1: 0x00700000 (2048.00 KB) - littlefs_imge.bin
+Waiting for device...
+Entering update mode...
+Detected flash size: 16 MB
+Burning partition 1/1... (0x00700000, 2048.00 KB)
+2048.00 KB / 2048.00 KB (100.00%)
+Finished
+
+√ exec exit
+```
+
+代码运行结果
+
+```shell
+[flash_core.c littlefs_flash_erase:26][EDEBUG]Area 0 at 0x700000 on FLASH_CTRL for 1048576 bytes
+
+[flash_core.c littlefs_mount:81][EDEBUG]/lfs1 automounted
+
+[flash_core.c user_flash_init:172][EDEBUG]/lfs1: bsize = 16 ; frsize = 4096 ; blocks = 256 ; bfree = 253
+[flash_core.c lsdir:125][EDEBUG]Listing dir /lfs1 ...
+[flash_core.c lsdir:141][EDEBUG][FILE] boot_count (size = 1)
+[flash_core.c lsdir:141][EDEBUG][FILE] pattern.bin (size = 547)
+[flash_core.c lsdir:141][EDEBUG][FILE] test.txt (size = 36)
+[flash_test.c flash_test:75][EDEBUG]read from /lfs1/test.txt, data:this is a flash read/write test data
+```
+
+
+
 ## 四、功能开发流程
 
 ### 4.1 新建基本工程

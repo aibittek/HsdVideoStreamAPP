@@ -5,6 +5,7 @@
  */
 
 #include <zephyr/zephyr.h>
+#include <delay.h>
 #include <user_test.h>
 
 void main(void)
@@ -17,6 +18,8 @@ void main(void)
     led_test();
     // 自定义shell命令测试
     shell_test();
+    // flash读写测试
+    flash_test();
 
     while(1){ delay_ms(100); }
 }

@@ -3,6 +3,8 @@
         "cstdint": "cpp",
         "typeinfo": "c",
         "*.tcc": "c",
-        "shell_command.h": "c"
+        "shell_command.h": "c",
+        "flash_core.h": "c",
+        "fs.h": "c"
     }
 }
