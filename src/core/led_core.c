@@ -2,7 +2,7 @@
  * @Author: AIoTMaker kuili@iflytek.com
  * @Date: 2022-11-29 18:56:58
  * @LastEditors: AIoTMaker kuili@iflytek.com
- * @LastEditTime: 2022-11-30 00:11:21
+ * @LastEditTime: 2022-11-30 13:52:05
  * @FilePath: \HsdVideoStreamAPP\src\core\led_core.c
  * @Description: 
  * 
@@ -60,13 +60,13 @@ static void blink_timer_expiry(struct k_timer *timer)
 {
     /* 关闭LED闪烁 */
     csk6011a_nano_led_off(GREEN_LED);
-    LOG(EDEBUG, "blink_timer_expiry called");
+    // LOG(EDEBUG, "blink_timer_expiry called");
 }
 
 
 static void blink_timer_stop(struct k_timer *timer)
 {
-    LOG(EDEBUG, "blink_timer_stop called");
+    // LOG(EDEBUG, "blink_timer_stop called");
 }
 
 
@@ -97,7 +97,7 @@ static void breathe_timer_expiry(struct k_timer *timer)
 
 static void breathe_timer_stop(struct k_timer *timer)
 {
-    LOG(EDEBUG, "breathe_timer_stop");
+    // LOG(EDEBUG, "breathe_timer_stop");
 }
 
 
@@ -186,6 +186,6 @@ __weak void csk6011a_nano_led_breathing(led_type_t led_type,
         k_timer_stop((struct k_timer *)led.blink_timer);
         k_timer_stop((struct k_timer *)led.breathe_timer);
         k_timer_start((struct k_timer *)led.breathe_timer, 
-            K_MSEC(0), K_MSEC(LED_DEFAULT_INTERVAL));
+            K_MSEC(LED_DEFAULT_INTERVAL), K_MSEC(LED_DEFAULT_INTERVAL));
     }
 }

@@ -15,6 +15,8 @@ void main(void)
     key_test();
     // LED测试
     led_test();
+    // 自定义shell命令测试
+    shell_test();
 
-    while(1){}
+    while(1){ delay_ms(100); }
 }
