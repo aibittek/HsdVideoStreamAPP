@@ -57,6 +57,8 @@ static void handler_cb(struct net_mgmt_event_callback *cb,
 
     LOG(EDEBUG, "Your address: %s,Subnet: %s,Router: %s", 
         wifi.ip, wifi.netmask, wifi.gw);
+    
+    wifi.connect_status = true;
 }
 
 
@@ -64,7 +66,7 @@ static void wifi_event_handler(csk_wifi_event_t events, void *event_data,
                                 uint32_t data_len, void *arg)
 {
     if (events & CSK_WIFI_EVT_STA_CONNECTED) {
-        wifi.connect_status = true;
+        // wifi.connect_status = true;
         LOG(EDEBUG, "[WiFi sta] connected");
     } else if (events & CSK_WIFI_EVT_STA_DISCONNECTED) {
         wifi.connect_status = false;

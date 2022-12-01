@@ -1,6 +1,8 @@
 #ifndef KEY_CORE_H
 #define KEY_CORE_H
 
+#include <stdbool.h>
+
 /// 按键消抖延迟事件，根据实际硬件情况更改，机械按键推荐5-10毫秒
 #define KEY_DEJITTER_TIME       10
 /// 长按事件的时间间隔
@@ -69,9 +71,9 @@ typedef struct key_ {
      */
     void (*event_unregister)(void);
 
-} key_t;
+} user_key_t;
 
 /*!< 按键单例 */
-extern key_t key;
+extern user_key_t key;
 
 #endif

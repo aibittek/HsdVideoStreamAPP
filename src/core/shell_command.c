@@ -95,13 +95,11 @@ static int cmd_wifi_connect(const struct shell *shell,
         //     "ssid": "xxxxxx",
         //     "passwd": "xxxxxx"
         // }
-        LOG(EDEBUG, "start json");
         JSON_SERIALIZE_CREATE_OBJECT_START(json_root_obj);
         JSON_SERIALIZE_ADD_STRING_TO_OBJECT(json_root_obj, "ssid", argv[1]);
         JSON_SERIALIZE_ADD_STRING_TO_OBJECT(json_root_obj, "passwd", argv[2]);
         JSON_SERIALIZE_STRING(json_root_obj, json_data, data_len);
         JSON_SERIALIZE_CREATE_END(json_root_obj);
-        LOG(EDEBUG, "json data:%s", json_data);
 
         rc = cmd_write_to_flash(SHELL_COMMAND_WIFI_AP_INFO_PATHNAME, 
                                 json_data);

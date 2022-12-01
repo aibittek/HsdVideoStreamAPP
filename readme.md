@@ -330,9 +330,56 @@ uart:~$ wifi connect mimi 12348765 1
 
 
 
-#### 3.2.6 Websocket案例
+#### 3.2.6 UDP网络通信案例
 
-websocket和服务端通信
+udp_test.c文件内容
+
+```c
+#include <string.h>
+#include <net/net_ip.h>
+#include <net/socket.h>
+#include <delay.h>
+#include <log.h>
+#include <wifi_core.h>
+
+void udp_test()
+{
+    const char* send_msg = "this is a udp test message.";
+    const char* server_ip = "192.168.43.66";
+    const short server_port = 8888;
+    struct sockaddr_in addr = {0};
+
+    while(!wifi.connect_status) { delay_ms(100); }
+
+    // 初始化本地socket，获取套接字描述符
+    int fd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (fd < 0) {
+        LOG(EERROR, "socket init failed");
+        return ;
+    }
+    
+    // 配置UDP服务端IP和端口号
+    net_sin((struct sockaddr *)&addr)->sin_family = AF_INET;
+    net_sin((struct sockaddr *)&addr)->sin_port = htons(server_port);
+    inet_pton(AF_INET, server_ip, &net_sin((struct sockaddr *)&addr)->sin_addr);
+
+    // 循环发送数据到服务端
+    for (;;) {
+        ssize_t len = sendto(fd, send_msg, strlen(send_msg), 0, 
+                            (struct sockaddr*)&addr, sizeof(addr));
+        if (len < 0) {
+            LOG(EERROR, "socket send failed");
+        }
+        delay_ms(1000);
+    }
+}
+```
+
+服务端接收内容
+
+<img src="https://cdn.jsdelivr.net/gh/aibittek/ImageHost/img/20221201194641.png" alt="image-20221201194622868" style="zoom: 67%;" />
+
+
 
 #### 3.2.7 头肩识别案例
 
@@ -365,3 +412,23 @@ lisa zep create
 ```shell
 git clone https://github.com/aibittek/HsdVideoStreamAPP.git
 ```
+
+
+
+## 七、问题
+
+【文档错误】在开发实践->外设驱动->PWM的使用示例的原理图下面，控制引脚是GPIOA_06改为GPIOB_06
+
+【文档错误】在开发实践->系统服务->网络->WIFI连接 编译和烧录->编译中使用了lisa zep build -b csk6002_9s_nano版型，实际通过验证lisa zep build -b csk6011a_c3_nano编译通过
+
+【网络问题】网络通信模块等待固定30秒才能进入main函数，试了tcp、websocket_client原始代码都是这样
+
+
+
+## 八、疑问
+
+【网络疑问】wifi_ap的demo怎么开dhcp服务给连接上来的设备提供IP，是否有相关案例，最好有ap配网的案例；
+
+
+
+## 九、期待

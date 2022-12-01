@@ -23,7 +23,7 @@ __weak bool csk6011a_nano_key_event_register(on_key_event_t on_key_event,
 __weak void csk6011a_nano_key_event_unregister(void);
 
 /// @brief 按键单例初始化
-key_t key = {
+user_key_t key = {
     .event              = KEY_EVENT_RELEASE,    /*!< 初始化引脚为抬起状态 */
     .init               = csk6011a_nano_key_init,
     .uninit             = csk6011a_nano_key_uninit,

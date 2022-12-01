@@ -22,6 +22,8 @@ void main(void)
     flash_test();
     // wifi连接热点测试
     wifi_test();
+    // udp服务端连接通信测试
+    udp_test();
 
     while(1){ delay_ms(100); }
 }
