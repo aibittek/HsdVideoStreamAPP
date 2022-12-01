@@ -2,7 +2,7 @@
  * @Author: AIoTMaker kuili@iflytek.com
  * @Date: 2022-11-30 16:09:16
  * @LastEditors: AIoTMaker kuili@iflytek.com
- * @LastEditTime: 2022-11-30 18:15:44
+ * @LastEditTime: 2022-12-01 11:56:59
  * @FilePath: \HsdVideoStreamAPP\src\test\flash_test.c
  * @Description: 
  * 
@@ -25,7 +25,7 @@
 #define MAX_PATH_LEN            255
 #define FLASH_MAX_DATA_LEN      256
 #define FLASH_TEST_DATA         "this is a flash read/write test data"
-#define FLASH_TEST_FILE_NAME    "/lfs1/test.txt"
+#define FLASH_TEST_FILE_NAME    "/lfs/test.txt"
 
 void flash_test()
 {
@@ -35,10 +35,12 @@ void flash_test()
     char test_data[FLASH_MAX_DATA_LEN] = {0};
     struct fs_file_t file = {0};    /*!< 初始化结构体 */
 
-    // 初始化挂载flash设备到/lfs1节点
+    // 初始化挂载flash设备到/lfs节点
     user_flash_init();
 
-    /* fs_unlink(fname); */
+    /* 如果文件先删除 */
+    fs_unlink(fname);
+
     /* 打开文件 */
     rc = fs_open(&file, fname, FS_O_CREATE | FS_O_RDWR);
     if (rc < 0) {

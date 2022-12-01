@@ -9,6 +9,8 @@
 
 
 
+[TOC]
+
 ## 一、案例演示
 
 ### 1.1 案例演示
@@ -184,7 +186,13 @@ void key_test()
 
 
 
-#### Flash应用案例
+#### 3.2.3 自定义Shell命令案例
+
+
+
+
+
+#### 3.2.4 Flash应用案例
 
 烧录
 
@@ -220,6 +228,20 @@ Finished
 [flash_core.c lsdir:141][EDEBUG][FILE] test.txt (size = 36)
 [flash_test.c flash_test:75][EDEBUG]read from /lfs1/test.txt, data:this is a flash read/write test data
 ```
+
+
+
+#### 3.2.5 Wi-Fi Sta模式案例
+
+shell联网并保存到flash中
+
+#### 3.2.6 Websocket案例
+
+websocket和服务端通信
+
+#### 3.2.7 头肩识别案例
+
+移植
 
 
 

@@ -20,6 +20,8 @@ void main(void)
     shell_test();
     // flash读写测试
     flash_test();
+    // wifi连接热点测试
+    wifi_test();
 
     while(1){ delay_ms(100); }
 }
