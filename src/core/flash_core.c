@@ -152,8 +152,11 @@ static int lsdir(const char *path)
 
 int user_flash_init()
 {
+    static bool is_init = false;
     struct fs_statvfs sbuf;
     int rc;
+
+    if (is_init) return 0;
 
     /* 挂载文件系统 */
     rc = littlefs_mount(mp);
@@ -181,6 +184,7 @@ int user_flash_init()
         LOG(EERROR, "FAIL: lsdir %s: %d\n", mp->mnt_point, rc);
     }
 
+    if (rc == 0) is_init=true;
     return rc;
 }
 

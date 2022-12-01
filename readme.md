@@ -233,7 +233,102 @@ Finished
 
 #### 3.2.5 Wi-Fi Sta模式案例
 
-shell联网并保存到flash中
+应用层测试代码
+
+```c
+#include <wifi_core.h>
+#include <log.h>
+
+void wifi_test(void)
+{
+    // 初始化Wi-Fi模块
+    wifi.init();
+
+    // 连接AP热点
+    wifi.connect_ap("mimi", "xxxxxxxx");
+}
+
+```
+
+代码运行结果
+
+```c
+[wifi_core.c esp32_c3_wifi_init:94][EDEBUG]mac address:10:91:a8:3e:9b:54
+[wifi_core.c esp32_c3_wifi_connect_ap:129][EDEBUG]connecting to wifi: mimi ...
+[wifi_core.c esp32_c3_wifi_connect_ap:150][EDEBUG]--------------------------Current AP info-------------------------------
+[wifi_core.c esp32_c3_wifi_connect_ap:151][EDEBUG]ssid: mimi  pwd: xxxxxxxx  bssid: 52:fc:57:12:03:ec  channel: 1  rssi: -48
+[wifi_core.c esp32_c3_wifi_connect_ap:154][EDEBUG]------------------------------------------------------------------------
+[wifi_core.c handler_cb:56][EDEBUG]Your address: 192.168.43.96,Subnet: 255.255.255.0,Router: 192.168.43.1
+```
+
+shell联网并保存到flash中，修改shell命令的实现，实现了把连接成功的Wi-Fi信息保存到了Flash中，下次设备上电时可以根据保存的Wi-Fi联网信息自动联网。
+
+```c
+static int cmd_wifi_connect(const struct shell *shell, 
+                            size_t argc, char **argv)
+{
+    int rc = 0;
+    char json_data[100] = {0};
+    int data_len = sizeof(json_data);
+
+    LOG(EDEBUG, "cmd_wifi_connect ssid: %s psw: %s save: %d \n", 
+        argv[1], argv[2], atoi(argv[3]));
+
+    // 判断是否已经初始化Wi-Fi模块
+    if (!wifi.connect_status) {
+        if (WIFI_OK != wifi.init()) {
+            LOG(EERROR, "wifi init failed");
+            return -1;
+        }
+        // 连接AP热点
+        if (WIFI_OK != wifi.connect_ap(argv[1], argv[2])) {
+            LOG(EERROR, "wifi connect ap ssid:%s failed", argv[1]);
+            return -1;
+        }
+    }
+
+    // 判断是否需要把SSID和Password保存到Flash中
+    if (atoi(argv[3]) == 1) {
+        // 构造json数据，格式为
+        // {
+        //     "ssid": "xxxxxx",
+        //     "passwd": "xxxxxx"
+        // }
+        LOG(EDEBUG, "start json");
+        JSON_SERIALIZE_CREATE_OBJECT_START(json_root_obj);
+        JSON_SERIALIZE_ADD_STRING_TO_OBJECT(json_root_obj, "ssid", argv[1]);
+        JSON_SERIALIZE_ADD_STRING_TO_OBJECT(json_root_obj, "passwd", argv[2]);
+        JSON_SERIALIZE_STRING(json_root_obj, json_data, data_len);
+        JSON_SERIALIZE_CREATE_END(json_root_obj);
+        LOG(EDEBUG, "json data:%s", json_data);
+
+        rc = cmd_write_to_flash(SHELL_COMMAND_WIFI_AP_INFO_PATHNAME, 
+                                json_data);
+        if (0 != rc) {
+            LOG(EERROR, "can not write %s to %s", 
+                json_data, SHELL_COMMAND_WIFI_AP_INFO_PATHNAME);
+        }
+    }
+
+    return rc;
+}
+```
+
+串口打印结果
+
+```shell
+uart:~$
+  clear    device   devmem   flash    help     history  kernel   pwm
+  resize   shell    wifi
+uart:~$ wifi connect mimi 12348765 1
+[shell_command.c cmd_wifi_connect:75][EDEBUG]cmd_wifi_connect ssid: mimi psw: 12348765 save: 1
+
+[shell_command.c cmd_wifi_connect:98][EDEBUG]start json
+[shell_command.c cmd_wifi_connect:104][EDEBUG]json data:{"ssid":"mimi","passwd":"xxxxxxxx"}
+[shell_command.c cmd_write_to_flash:59][EDEBUG]write {"ssid":"mimi","passwd":"xxxxxxxx"} to file /lfs/wifi.conf successed
+```
+
+
 
 #### 3.2.6 Websocket案例
 

@@ -11,6 +11,8 @@
 #ifndef _SHELL_COMMAND_H
 #define _SHELL_COMMAND_H
 
+#define SHELL_COMMAND_WIFI_AP_INFO_PATHNAME     "/lfs/wifi.conf"
+
 /**
  * @brief shell命令行功能初始化
  */

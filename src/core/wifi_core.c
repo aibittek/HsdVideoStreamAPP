@@ -19,6 +19,7 @@ __weak wifi_status_t esp32_c3_wifi_uninit(void);
 __weak wifi_status_t esp32_c3_wifi_connect_ap(const char* ssid, 
                                             const char* passwd);
 __weak wifi_status_t esp32_c3_wifi_disconnect_ap(void);
+// __weak wifi_status_t esp32_c3_wifi_scan_ap(void);
 __weak bool esp32_c3_wifi_is_connect(void);
 
 wifi_t wifi = {
@@ -26,6 +27,7 @@ wifi_t wifi = {
     .uninit         = esp32_c3_wifi_uninit,
     .connect_ap     = esp32_c3_wifi_connect_ap,
     .disconnect_ap  = esp32_c3_wifi_disconnect_ap,
+    // .scan_ap        = esp32_c3_wifi_scan_ap,
     .is_connect     = esp32_c3_wifi_is_connect,
     .connect_status = false,
 };

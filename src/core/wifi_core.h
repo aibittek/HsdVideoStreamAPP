@@ -2,7 +2,7 @@
  * @Author: AIoTMaker kuili@iflytek.com
  * @Date: 2022-11-30 21:28:10
  * @LastEditors: AIoTMaker kuili@iflytek.com
- * @LastEditTime: 2022-12-01 12:16:05
+ * @LastEditTime: 2022-12-01 12:39:46
  * @FilePath: \HsdVideoStreamAPP\src\core\wifi_core.h
  * @Description: 
  * 
@@ -65,6 +65,13 @@ typedef struct {
      * @return wifi_status_t 返回状态
      */    
     wifi_status_t (*disconnect_ap)(void);
+
+    // 
+    /**
+     * @brief: 扫描可用热点
+     * @return wifi_status_t 返回状态
+     */    
+    // wifi_status_t (*scan_ap)(void);
 
     /**
      * @brief: 检查Wi-Fi模块是否工作正常

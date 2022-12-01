@@ -5,6 +5,10 @@
         "*.tcc": "c",
         "shell_command.h": "c",
         "flash_core.h": "c",
-        "fs.h": "c"
+        "fs.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c"
     }
 }
