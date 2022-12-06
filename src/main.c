@@ -2,7 +2,7 @@
  * @Author: AIoTMaker kuili@iflytek.com
  * @Date: 2022-12-05 21:44:15
  * @LastEditors: AIoTMaker kuili@iflytek.com
- * @LastEditTime: 2022-12-05 23:57:30
+ * @LastEditTime: 2022-12-06 10:52:18
  * @FilePath: \csk6_apps\src\main.c
  * @Description: 
  * 
@@ -21,12 +21,8 @@
 void main(void)
 {
 #if 0
-    // 日志测试
-    log_test();
     // 按键测试
     key_test();
-    // LED测试
-    led_test();
     // 自定义shell命令测试
     shell_test();
     // flash读写测试
@@ -36,6 +32,11 @@ void main(void)
     // udp服务端连接通信测试
     udp_test();
 #endif
+    // 日志测试
+    log_test();
+    // LED测试
+    led_test();
+    // 舵机测试
     servo_test();
 
     while(1){ delay_ms(100); }
