@@ -432,3 +432,53 @@ git clone https://github.com/aibittek/HsdVideoStreamAPP.git
 
 
 ## 九、期待
+
+
+
+## 十、引脚使用
+
+```
+I2C0：
+B0
+B1
+
+DVP：
+A4
+A5
+A6
+A7
+A8
+A9
+A12
+A13
+A14
+B7
+B8
+B9
+
+gc032a：A6
+
+WIFI:
+SPI1:
+PA10
+PA11
+
+UART0:
+PA2
+PA3
+
+PWM2:
+
+KEY:B5
+LED:B6
+PA16
+
+SPI0-flash:
+A17
+A18
+A19
+A20
+
+SERVO:B2
+```
+

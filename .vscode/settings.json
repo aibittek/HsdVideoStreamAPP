@@ -9,6 +9,8 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "utility": "c"
+        "utility": "c",
+        "servo_core.h": "c",
+        "delay.h": "c"
     }
 }

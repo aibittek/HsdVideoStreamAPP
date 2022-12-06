@@ -19,5 +19,6 @@ void shell_test(void);              ///< 命令行测试
 void flash_test(void);              ///< flash测试
 void wifi_test(void);               ///< wifi测试
 void udp_test(void);                ///< udp通信测试
+void servo_test(void);              ///< udp通信测试
 
 #endif
